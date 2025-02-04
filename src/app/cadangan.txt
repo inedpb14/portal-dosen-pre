@@ -1,0 +1,158 @@
+"use client";
+
+import {
+  ArrowRight,
+  Award,
+  Book,
+  GraduationCap,
+  Mail,
+  MapPin,
+} from "lucide-react";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+// import Image from "next/image";
+
+export default function Home() {
+  return (
+    <div className="min-h-screen bg-background">
+      <div className="container mx-auto px-4 py-8 md:py-16">
+        <div className="flex flex-col items-center text-center mb-8 md:mb-12">
+          <div className="w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden mb-4 md:mb-6">
+            <img
+              src="./foto-diri.jpg"
+              alt="Dr. James Wilson"
+              className="w-full h-full object-cover"
+            />
+          </div>
+          <h1 className="text-3xl md:text-4xl font-bold mb-3 md:mb-4">
+           Deni Prastya Budi
+          </h1>
+          <div className="flex items-center gap-2 text-muted-foreground mb-2">
+            <MapPin className="w-4 h-4" />
+            <span className="text-sm md:text-base">
+              Professor of Computer Science at Stanford University
+            </span>
+          </div>
+          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mb-6 md:mb-8 px-4">
+            Bridging the gap between theoretical computer science and practical
+            applications, with a focus on artificial intelligence and machine
+            learning.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4">
+            <Button asChild>
+              <Link href="/materials">
+              <p className="text-black flex" >
+                View Learning Materials <ArrowRight className="ml-2 w-4 h-4" />
+              </p>
+              </Link>
+            </Button>
+            <Button  variant="outline" asChild>
+              <Link href="/contact">Contact Me</Link>
+            </Button>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 mb-8 md:mb-12">
+          <Card>
+            <CardContent className="pt-6">
+              <div className="flex items-center gap-4">
+                <div className="p-3 bg-primary/10 rounded-lg">
+                  <Book className="w-6 h-6 text-primary" />
+                </div>
+                <div>
+                  <h3 className="font-semibold">15+ Years</h3>
+                  <p className="text-sm text-muted-foreground">
+                    Teaching Experience
+                  </p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardContent className="pt-6">
+              <div className="flex items-center gap-4">
+                <div className="p-3 bg-primary/10 rounded-lg">
+                  <Award className="w-6 h-6 text-primary" />
+                </div>
+                <div>
+                  <h3 className="font-semibold">50+ Publications</h3>
+                  <p className="text-sm text-muted-foreground">
+                    Research Papers
+                  </p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+          <Card className="sm:col-span-2 md:col-span-1">
+            <CardContent className="pt-6">
+              <div className="flex items-center gap-4">
+                <div className="p-3 bg-primary/10 rounded-lg">
+                  <GraduationCap className="w-6 h-6 text-primary" />
+                </div>
+                <div>
+                  <h3 className="font-semibold">1000+ Students</h3>
+                  <p className="text-sm text-muted-foreground">Mentored</p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+
+        <section className="mb-8 md:mb-12">
+          <h2 className="text-xl md:text-2xl font-bold mb-4 md:mb-6">
+            Featured Research
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+            <Card>
+              <CardContent className="pt-6">
+                <h3 className="font-semibold mb-2">
+                  Deep Learning in Healthcare
+                </h3>
+                <p className="text-sm md:text-base text-muted-foreground mb-4">
+                  Novel approaches to medical diagnosis using advanced neural
+                  networks.
+                </p>
+                <Button variant="link" asChild>
+                  <Link href="/publications">Read More</Link>
+                </Button>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardContent className="pt-6">
+                <h3 className="font-semibold mb-2">
+                  Quantum Computing Applications
+                </h3>
+                <p className="text-sm md:text-base text-muted-foreground mb-4">
+                  Exploring the potential of quantum algorithms in optimization
+                  problems.
+                </p>
+                <Button variant="link" asChild>
+                  <Link href="/publications">Read More</Link>
+                </Button>
+              </CardContent>
+            </Card>
+          </div>
+        </section>
+
+        <section>
+          <h2 className="text-xl md:text-2xl font-bold mb-4 md:mb-6">
+            Get in Touch
+          </h2>
+          <div className="flex flex-col items-center gap-4">
+            <p className="text-sm md:text-base text-muted-foreground text-center max-w-xl px-4">
+              Whether you re a student looking for guidance, a fellow researcher
+              interested in collaboration, or just want to discuss computer
+              science, I d love to hear from you.
+            </p>
+            <Button asChild>
+              <Link href="mailto:james.wilson@stanford.edu">
+                <Mail className="mr-2 w-4 h-4" /> Email Me
+              </Link>
+            </Button>
+          </div>
+        </section>
+      </div>
+    </div>
+  );
+}

@@ -1,0 +1,58 @@
+import HeroSection from "@/componentsPage/home/HeroSection";
+import { products } from "@/app/data/dataProduct";
+
+//courseId disini berfungsi sebagai dynamic routes perhatikan bahwa ini sama dengan nama folder yang kamu buat
+//nilai yang di ketik pada url akan di ambil dan disimpan pada var params.
+type ProductsParams = {
+  params: { courseId?: string[] };
+};
+
+// App Directory Component
+export default async function ProductsPage({ params }: ProductsParams) {
+  const tt = await params;
+  const searchQuery = tt.courseId || [];
+  const searchTerms = (searchQuery || []).join("").toLowerCase();
+  const hasilSearch = decodeURI(searchTerms)
+
+  const filteredProducts = products.filter((product) =>
+    hasilSearch ? product.category.toLowerCase().includes(hasilSearch) : true
+    
+  );
+  
+
+const testing = filteredProducts.length;
+
+console.log('hasil = ' + testing)
+
+  return (
+    <>
+      <HeroSection />
+      <h1 className=" text-center mb-5">
+        {searchQuery.length > 0
+          ? `hasil pencarian untuk "${hasilSearch}"`
+          : "Menampilkan Semua Product"}
+      </h1>
+
+      <div className="container flex bg-slate-900 mx-auto gap-5 p-5">
+        <div className="rounded-lg lg:w-80 lg:h-[500px] bg-slate-400"></div>
+        <div className="container mx-auto">
+          {filteredProducts.length > 0 ? (
+            <ul className="grid grid-cols-1 gap-3 md:grid-cols-4">
+              {filteredProducts.map((product) => (
+                <li
+                  key={product.id}
+                  className="p-3 cursor-pointer border text-sm rounded-lg shadow-md bg-white hover:shadow-lg transition-shadow duration-300"
+                >
+                  {product.name} <br />  {product.category}<br />{" "}
+                 {product.price} 
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p>produk tidak di temukan</p>
+          )}
+        </div>
+      </div>
+    </>
+  );
+}
